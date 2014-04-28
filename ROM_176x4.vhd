@@ -1,0 +1,580 @@
+--library ieee;  
+--use ieee.std_logic_1164.all; 
+--use ieee.std_logic_unsigned.all;
+--
+--
+--entity ROM_176x4 is
+--  port (Clock : in std_logic;
+--  		CS_L : in std_logic;
+--        R_W  : in std_logic;  
+--        Addr   : in std_logic_vector(7 downto 0);  
+--        Data  : out std_logic_vector(3 downto 0));  
+--end ROM_176x4;  
+--
+--architecture ROM_176x4_Arch of ROM_176x4 is  
+--  type rom_type is array (0 to 175)  
+--        of std_logic_vector (3 downto 0);  
+--  signal ROM : rom_type; 
+--  signal Read_Enable : std_logic;
+--begin  
+--	-- Place program here.  Use 'X' to designate Hex format
+--	ROM(0) <= X"7";
+--	ROM(1) <= X"8";
+--	ROM(2) <= X"6";
+--	ROM(3) <= X"1";	
+--	ROM(4) <= X"4";
+--	ROM(5) <= X"3";
+--	ROM(6) <= X"b";
+--	ROM(7) <= X"2";
+--	ROM(8) <= X"0";
+--	ROM(9) <= X"9";
+--	ROM(10) <= X"9";
+--	ROM(11) <= X"0";
+--	--ROM(0) <= X"";
+----	ROM(1) <= X"";
+----	ROM(2) <= X"";
+----	ROM(3) <= X"";	
+----	ROM(4) <= X"";
+----	ROM(5) <= X"";
+----	ROM(6) <= X"";
+----	ROM(7) <= X"";
+----	ROM(8) <= X"";
+----	ROM(9) <= X"";
+----	ROM(10) <= X"";
+----	ROM(11) <= X"";
+----	ROM(12) <= X"";
+----	ROM(13) <= X"";
+----	ROM(14) <= X"";
+----	ROM(15) <= X"";
+----	ROM(16) <= X"";
+----	ROM(17) <= X"";
+----	ROM(18) <= X"";
+----	ROM(19) <= X"";
+----	ROM(20) <= X"";
+----	ROM(21) <= X"";
+----	ROM(22) <= X"";
+----	ROM(23) <= X"";
+----	ROM(24) <= X"";
+----	ROM(25) <= X"";
+----	ROM(26) <= X"";
+----	ROM(27) <= X"";
+----	ROM(28) <= X"";
+----	ROM(29) <= X"";
+----	ROM(30) <= X"";
+----	ROM(31) <= X"";
+----	ROM(32) <= X"";
+----	ROM(33) <= X"";	
+----	ROM(34) <= X"";   
+----	ROM(35) <= X"";
+----	ROM(36) <= X"";
+----	ROM(37) <= X"";
+----	ROM(38) <= X"";	
+----	ROM(39) <= X"";
+----	ROM(40) <= X"";
+----	ROM(41) <= X"";
+----	ROM(42) <= X"";
+----	ROM(43) <= X"";
+----	ROM(44) <= X"";
+----	ROM(45) <= X"";
+----	ROM(46) <= X"";
+----	ROM(47) <= X"";
+----	ROM(48) <= X"";
+----	ROM(49) <= X"";
+----	ROM(50) <= X"";
+----	ROM(51) <= X"";
+----	ROM(52) <= X"";
+----	ROM(53) <= X"";
+----	ROM(54) <= X"";
+----	ROM(55) <= X"";
+----	ROM(56) <= X"";
+----	ROM(57) <= X"";
+----	ROM(58) <= X"";
+----	ROM(59) <= X"";
+----	ROM(60) <= X"";
+----	ROM(61) <= X"";
+----	ROM(62) <= X"";
+----	ROM(63) <= X"";
+----	ROM(64) <= X"";
+----	ROM(65) <= X"";
+----	ROM(66) <= X"";
+----	ROM(67) <= X"";
+----	ROM(68) <= X"";	
+----	ROM(69) <= X"";		 
+----	ROM(70) <= X"";
+----	ROM(71) <= X"";
+----	ROM(72) <= X"";
+----	ROM(73) <= X"";
+----	ROM(74) <= X"";
+----	ROM(75) <= X"";
+----	ROM(76) <= X"";
+----	ROM(77) <= X"";
+----	ROM(78) <= X"";
+----	ROM(79) <= X"";
+----	ROM(80) <= X"";
+----	ROM(81) <= X"";
+----	ROM(82) <= X"";
+----	ROM(83) <= X"";
+----	ROM(84) <= X"";	
+----	ROM(85) <= X""; 		 	 
+----	ROM(86) <= X"";
+----	ROM(87) <= X"";
+----	ROM(88) <= X"";
+----	ROM(89) <= X"";
+----	ROM(90) <= X"";
+----	ROM(91) <= X"";			  
+----	ROM(92) <= X"";			--Best Address on here!!!
+----	ROM(93) <= X"";
+----	ROM(94) <= X"";
+----	ROM(95) <= X"";
+----	ROM(96) <= X"";
+----	ROM(97) <= X"";
+----	ROM(98) <= X"";	
+----	ROM(99) <= X"";
+--
+--
+--	
+--	Read_Enable <=  '0' when(CS_L='0' and R_W = '1') else '1';
+--
+--	
+--	process (Clock)  
+--	begin  	
+--		if(Clock='0') then
+--			if(Read_Enable = '0') then
+--			  Data  <= ROM(conv_integer(Addr)); 
+--		  	else
+--			  Data <= "ZZZZ";
+--	      	end if; 
+--		else Data <= "ZZZZ";
+--		end if;
+--	
+--	end process;
+--
+--	end ROM_176x4_Arch;
+
+
+
+--library ieee;
+--use ieee.std_logic_1164.all; 
+--use ieee.std_logic_unsigned.all;
+--
+--entity ROM_176x4 is
+--  port (Clock : in std_logic;
+--  		CS_L : in std_logic;
+--        R_W  : in std_logic;
+--        Addr   : in std_logic_vector(7 downto 0);
+--        Data  : out std_logic_vector(3 downto 0));
+--end ROM_176x4;
+--
+--architecture ROM_176x4_Arch of ROM_176x4 is
+--  type rom_type is array (0 to 175)
+--        of std_logic_vector (3 downto 0);
+--  signal ROM : rom_type;
+--  signal Read_Enable : std_logic;
+--begin
+--
+--ROM(0) <= X"7";
+--ROM(1) <= X"A";
+--ROM(2) <= X"1";
+--ROM(3) <= X"D";
+--ROM(4) <= X"2";
+--ROM(5) <= X"B";
+--ROM(6) <= X"7";
+--ROM(7) <= X"A";
+--ROM(8) <= X"1";
+--ROM(9) <= X"D";
+--ROM(10) <= X"3";
+--ROM(11) <= X"B";
+--ROM(12) <= X"7";
+--ROM(13) <= X"8";
+--ROM(14) <= X"1";
+--ROM(15) <= X"D";
+--ROM(16) <= X"4";
+--ROM(17) <= X"B";
+--ROM(18) <= X"7";
+--ROM(19) <= X"1";
+--ROM(20) <= X"1";
+--ROM(21) <= X"D";
+--ROM(22) <= X"5";
+--ROM(23) <= X"B";
+--ROM(24) <= X"F";
+--ROM(25) <= X"0";
+--ROM(26) <= X"B";
+--ROM(27) <= X"4";
+--ROM(28) <= X"1";
+--ROM(29) <= X"F";
+--ROM(30) <= X"1";
+--ROM(31) <= X"B";
+--ROM(32) <= X"4";
+--ROM(33) <= X"2";
+--ROM(34) <= X"5";
+--ROM(35) <= X"0";
+--ROM(36) <= X"E";
+--ROM(37) <= X"4";
+--ROM(38) <= X"B";
+--ROM(39) <= X"B";
+--ROM(40) <= X"D";
+--ROM(41) <= X"5";
+--ROM(42) <= X"F";
+--ROM(43) <= X"1";
+--ROM(44) <= X"B";
+--ROM(45) <= X"E";
+--ROM(46) <= X"5";
+--ROM(47) <= X"B";
+--ROM(48) <= X"D";
+--ROM(49) <= X"1";
+--ROM(50) <= X"B";
+--ROM(51) <= X"A";
+--ROM(52) <= X"9";
+--ROM(53) <= X"3";
+--ROM(54) <= X"9";
+--ROM(55) <= X"8";
+--ROM(56) <= X"1";
+--ROM(57) <= X"4";
+--ROM(58) <= X"2";
+--ROM(59) <= X"E";
+--ROM(60) <= X"0";
+--ROM(61) <= X"B";
+--ROM(62) <= X"A";
+--ROM(63) <= X"2";
+--ROM(64) <= X"5";
+--ROM(65) <= X"F";
+--ROM(66) <= X"0";
+--ROM(67) <= X"B";
+--ROM(68) <= X"E";
+--ROM(69) <= X"5";
+--ROM(70) <= X"B";
+--ROM(71) <= X"D";
+--ROM(72) <= X"0";
+--ROM(73) <= X"B";
+--ROM(74) <= X"7";
+--ROM(75) <= X"9";
+--ROM(76) <= X"D";
+--ROM(77) <= X"1";
+--ROM(78) <= X"B";
+--ROM(79) <= X"9";
+--ROM(80) <= X"8";
+--ROM(81) <= X"1";
+--ROM(82) <= X"7";
+--ROM(83) <= X"9";
+--ROM(84) <= X"D";
+--ROM(85) <= X"0";
+--ROM(86) <= X"B";
+--ROM(87) <= X"D";
+--ROM(88) <= X"1";
+--ROM(89) <= X"B";
+--ROM(90) <= X"9";
+--ROM(91) <= X"8";
+--ROM(92) <= X"1";
+--ROM(93) <= X"F";
+--ROM(94) <= X"1";
+--ROM(95) <= X"B";
+--ROM(96) <= X"6";
+--ROM(97) <= X"1";
+--ROM(98) <= X"D";
+--ROM(99) <= X"1";
+--ROM(100) <= X"B";
+--ROM(101) <= X"E";
+--ROM(102) <= X"2";
+--ROM(103) <= X"B";
+--ROM(104) <= X"A";
+--ROM(105) <= X"E";
+--ROM(106) <= X"6";
+--ROM(107) <= X"9";
+--ROM(108) <= X"8";
+--ROM(109) <= X"1";
+--ROM(110) <= X"F";
+--ROM(111) <= X"0";
+--ROM(112) <= X"B";
+--ROM(113) <= X"6";
+--ROM(114) <= X"1";
+--ROM(115) <= X"D";
+--ROM(116) <= X"0";
+--ROM(117) <= X"B";
+--ROM(118) <= X"E";
+--ROM(119) <= X"2";
+--ROM(120) <= X"B";
+--ROM(121) <= X"A";
+--ROM(122) <= X"4";
+--ROM(123) <= X"8";
+--ROM(124) <= X"7";
+--ROM(125) <= X"0";
+--ROM(126) <= X"D";
+--ROM(127) <= X"1";
+--ROM(128) <= X"B";
+--ROM(129) <= X"9";
+--ROM(130) <= X"8";
+--ROM(131) <= X"1";
+--ROM(132) <= X"7";
+--ROM(133) <= X"0";
+--ROM(134) <= X"D";
+--ROM(135) <= X"0";
+--ROM(136) <= X"B";
+--ROM(137) <= X"9";
+--ROM(138) <= X"C";
+--ROM(139) <= X"7";
+--ROM(140) <= X"0";
+--ROM(141) <= X"0";
+--ROM(142) <= X"0";
+--ROM(143) <= X"0";
+--ROM(144) <= X"0";
+--ROM(145) <= X"0";
+--ROM(146) <= X"0";
+--ROM(147) <= X"0";
+--ROM(148) <= X"0";
+--ROM(149) <= X"0";
+--ROM(150) <= X"0";
+--ROM(151) <= X"0";
+--ROM(152) <= X"0";
+--ROM(153) <= X"0";
+--ROM(154) <= X"0";
+--ROM(155) <= X"0";
+--ROM(156) <= X"0";
+--ROM(157) <= X"0";
+--ROM(158) <= X"0";
+--ROM(159) <= X"0";
+--ROM(160) <= X"0";
+--ROM(161) <= X"0";
+--ROM(162) <= X"0";
+--ROM(163) <= X"0";
+--ROM(164) <= X"0";
+--ROM(165) <= X"0";
+--ROM(166) <= X"0";
+--ROM(167) <= X"0";
+--ROM(168) <= X"0";
+--ROM(169) <= X"0";
+--ROM(170) <= X"0";
+--ROM(171) <= X"0";
+--ROM(172) <= X"0";
+--ROM(173) <= X"0";
+--ROM(174) <= X"0";
+--ROM(175) <= X"0";
+--	Read_Enable <=  '0' when(CS_L='0' and R_W = '1') else '1';
+--
+--	process (Clock)
+--	begin
+--		if(Clock='0') then
+--			if(Read_Enable = '0') then
+--			  Data  <= ROM(conv_integer(Addr));
+--		  	else
+--			  Data <= "ZZZZ";
+--	      	end if;
+--		else Data <= "ZZZZ";
+--		end if;
+--
+--	end process;
+--
+--	end ROM_176x4_Arch;
+
+
+
+library ieee;
+use ieee.std_logic_1164.all; 
+use ieee.std_logic_unsigned.all;
+
+entity ROM_176x4 is
+  port (Clock : in std_logic;
+  		CS_L : in std_logic;
+        R_W  : in std_logic;
+        Addr   : in std_logic_vector(7 downto 0);
+        Data  : out std_logic_vector(3 downto 0));
+end ROM_176x4;
+
+architecture ROM_176x4_Arch of ROM_176x4 is
+  type rom_type is array (0 to 175)
+        of std_logic_vector (3 downto 0);
+  signal ROM : rom_type;
+  signal Read_Enable : std_logic;
+begin
+
+ROM(0) <= X"7";
+ROM(1) <= X"A";
+ROM(2) <= X"1";
+ROM(3) <= X"D";
+ROM(4) <= X"2";
+ROM(5) <= X"B";
+ROM(6) <= X"7";
+ROM(7) <= X"0";
+ROM(8) <= X"9";
+ROM(9) <= X"3";
+ROM(10) <= X"4";
+ROM(11) <= X"9";
+ROM(12) <= X"6";
+ROM(13) <= X"5";
+ROM(14) <= X"9";
+ROM(15) <= X"9";
+ROM(16) <= X"6";
+ROM(17) <= X"9";
+ROM(18) <= X"C";
+ROM(19) <= X"7";
+ROM(20) <= X"F";
+ROM(21) <= X"1";
+ROM(22) <= X"B";
+ROM(23) <= X"6";
+ROM(24) <= X"1";
+ROM(25) <= X"D";
+ROM(26) <= X"1";
+ROM(27) <= X"B";
+ROM(28) <= X"E";
+ROM(29) <= X"2";
+ROM(30) <= X"B";
+ROM(31) <= X"A";
+ROM(32) <= X"5";
+ROM(33) <= X"2";
+ROM(34) <= X"9";
+ROM(35) <= X"8";
+ROM(36) <= X"0";
+ROM(37) <= X"F";
+ROM(38) <= X"0";
+ROM(39) <= X"B";
+ROM(40) <= X"6";
+ROM(41) <= X"1";
+ROM(42) <= X"D";
+ROM(43) <= X"0";
+ROM(44) <= X"B";
+ROM(45) <= X"E";
+ROM(46) <= X"2";
+ROM(47) <= X"B";
+ROM(48) <= X"A";
+ROM(49) <= X"B";
+ROM(50) <= X"3";
+ROM(51) <= X"7";
+ROM(52) <= X"0";
+ROM(53) <= X"D";
+ROM(54) <= X"1";
+ROM(55) <= X"B";
+ROM(56) <= X"9";
+ROM(57) <= X"8";
+ROM(58) <= X"0";
+ROM(59) <= X"7";
+ROM(60) <= X"0";
+ROM(61) <= X"D";
+ROM(62) <= X"0";
+ROM(63) <= X"B";
+ROM(64) <= X"9";
+ROM(65) <= X"3";
+ROM(66) <= X"3";
+ROM(67) <= X"F";
+ROM(68) <= X"0";
+ROM(69) <= X"B";
+ROM(70) <= X"4";
+ROM(71) <= X"0";
+ROM(72) <= X"F";
+ROM(73) <= X"1";
+ROM(74) <= X"B";
+ROM(75) <= X"4";
+ROM(76) <= X"1";
+ROM(77) <= X"7";
+ROM(78) <= X"0";
+ROM(79) <= X"4";
+ROM(80) <= X"2";
+ROM(81) <= X"4";
+ROM(82) <= X"3";
+ROM(83) <= X"9";
+ROM(84) <= X"B";
+ROM(85) <= X"0";
+ROM(86) <= X"F";
+ROM(87) <= X"0";
+ROM(88) <= X"B";
+ROM(89) <= X"4";
+ROM(90) <= X"1";
+ROM(91) <= X"F";
+ROM(92) <= X"1";
+ROM(93) <= X"B";
+ROM(94) <= X"4";
+ROM(95) <= X"2";
+ROM(96) <= X"7";
+ROM(97) <= X"0";
+ROM(98) <= X"4";
+ROM(99) <= X"0";
+ROM(100) <= X"4";
+ROM(101) <= X"3";
+ROM(102) <= X"9";
+ROM(103) <= X"E";
+ROM(104) <= X"0";
+ROM(105) <= X"F";
+ROM(106) <= X"0";
+ROM(107) <= X"B";
+ROM(108) <= X"4";
+ROM(109) <= X"2";
+ROM(110) <= X"F";
+ROM(111) <= X"1";
+ROM(112) <= X"B";
+ROM(113) <= X"4";
+ROM(114) <= X"3";
+ROM(115) <= X"7";
+ROM(116) <= X"0";
+ROM(117) <= X"4";
+ROM(118) <= X"1";
+ROM(119) <= X"4";
+ROM(120) <= X"0";
+ROM(121) <= X"9";
+ROM(122) <= X"1";
+ROM(123) <= X"1";
+ROM(124) <= X"F";
+ROM(125) <= X"0";
+ROM(126) <= X"B";
+ROM(127) <= X"4";
+ROM(128) <= X"3";
+ROM(129) <= X"F";
+ROM(130) <= X"1";
+ROM(131) <= X"B";
+ROM(132) <= X"4";
+ROM(133) <= X"0";
+ROM(134) <= X"7";
+ROM(135) <= X"0";
+ROM(136) <= X"4";
+ROM(137) <= X"1";
+ROM(138) <= X"4";
+ROM(139) <= X"2";
+ROM(140) <= X"9";
+ROM(141) <= X"4";
+ROM(142) <= X"1";
+ROM(143) <= X"0";
+ROM(144) <= X"0";
+ROM(145) <= X"0";
+ROM(146) <= X"0";
+ROM(147) <= X"0";
+ROM(148) <= X"0";
+ROM(149) <= X"0";
+ROM(150) <= X"0";
+ROM(151) <= X"0";
+ROM(152) <= X"0";
+ROM(153) <= X"0";
+ROM(154) <= X"0";
+ROM(155) <= X"0";
+ROM(156) <= X"0";
+ROM(157) <= X"0";
+ROM(158) <= X"0";
+ROM(159) <= X"0";
+ROM(160) <= X"0";
+ROM(161) <= X"0";
+ROM(162) <= X"0";
+ROM(163) <= X"0";
+ROM(164) <= X"0";
+ROM(165) <= X"0";
+ROM(166) <= X"0";
+ROM(167) <= X"0";
+ROM(168) <= X"0";
+ROM(169) <= X"0";
+ROM(170) <= X"0";
+ROM(171) <= X"0";
+ROM(172) <= X"0";
+ROM(173) <= X"0";
+ROM(174) <= X"0";
+ROM(175) <= X"0";
+	Read_Enable <=  '0' when(CS_L='0' and R_W = '1') else '1';
+
+	process (Clock)
+	begin
+		if(Clock='0') then
+			if(Read_Enable = '0') then
+			  Data  <= ROM(conv_integer(Addr));
+		  	else
+			  Data <= "ZZZZ";
+	      	end if;
+		else Data <= "ZZZZ";
+		end if;
+
+	end process;
+
+	end ROM_176x4_Arch;
